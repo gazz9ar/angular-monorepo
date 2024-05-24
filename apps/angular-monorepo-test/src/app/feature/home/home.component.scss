@@ -1,0 +1,11 @@
+@use "../../../../src/theming/_breakpoints.scss";
+
+.app-home {
+    &__test-btn {
+        display: none;
+
+        @include breakpoint-small-down {
+            display: block;
+        }
+    }
+}

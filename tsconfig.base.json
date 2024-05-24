@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@angular-monorepo/button": ["libs/shared/ui/src/index.ts"],
+      "@angular-monorepo/http": ["libs/src/index.ts"],
+      "@angular-monorepo/network": ["libs/shared/src/index.ts"],
+      "@angular-monorepo/request": ["libs/http/src/index.ts"],
+      "@angular-monorepo/translate": ["libs/utils/src/index.ts"],
+      "@ics/ui": ["libs/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

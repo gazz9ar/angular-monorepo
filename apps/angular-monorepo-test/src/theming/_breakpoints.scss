@@ -1,0 +1,176 @@
+$breakpoints: (
+    "xsmall": 449px,
+    "small": 766px,
+    "medium": 991px,
+    "large": 1199px,
+    "xlarge": 1599px,
+    "xxlarge": 1999px
+);
+
+@mixin max-width-media($max-width) {
+    @media (max-width: $max-width) {
+        @content;
+    }
+}
+
+@mixin between-width-media($min-width, $max-width) {
+    $min-width: $min-width + 1;
+
+    @media (min-width: $min-width) and (max-width: $max-width) {
+        @content;
+    }
+}
+
+@mixin min-width-media($min-width) {
+    $min-width: $min-width + 1;
+
+    @media (min-width: $min-width) {
+        @content;
+    }
+}
+
+@mixin breakpoint-down($breakpoint) {
+    $value: map-get($breakpoints, $breakpoint);
+
+    @include max-width-media($value) {
+        @content;
+    }
+}
+
+@mixin breakpoint-up($breakpoint) {
+    $value: map-get($breakpoints, $breakpoint);
+
+    @include min-width-media($value) {
+        @content;
+    }
+}
+
+@mixin breakpoint-only($breakpoint) {
+    $breakpoints-keys: map-keys($breakpoints);
+    $breakpoints-length: length($breakpoints-keys);
+    $breakpoint-index: index($breakpoints-keys, $breakpoint);
+    $value: map-get($breakpoints, $breakpoint);
+
+    @if $breakpoint-index ==$breakpoints-length {
+        @include min-width-media($value) {
+            @content;
+        }
+    }
+
+    @else {
+        $next-breakpoint-key: nth($breakpoints-keys, $breakpoint-index + 1);
+        $next-value: map-get($breakpoints, $next-breakpoint-key);
+
+        @include between-width-media($value, $next-value) {
+            @content;
+        }
+    }
+}
+
+@mixin breakpoint-xxlarge-down {
+    @include breakpoint-down("xxlarge") {
+        @content;
+    }
+}
+
+@mixin breakpoint-xxlarge-up {
+    @include breakpoint-up("xxlarge") {
+        @content;
+    }
+}
+
+@mixin breakpoint-xxlarge-only {
+    @include breakpoint-only("xxlarge") {
+        @content;
+    }
+}
+
+@mixin breakpoint-xlarge-down {
+    @include breakpoint-down("xlarge") {
+        @content;
+    }
+}
+
+@mixin breakpoint-xlarge-up {
+    @include breakpoint-up("xlarge") {
+        @content;
+    }
+}
+
+@mixin breakpoint-xlarge-only {
+    @include breakpoint-only("xlarge") {
+        @content;
+    }
+}
+
+@mixin breakpoint-large-down {
+    @include breakpoint-down("large") {
+        @content;
+    }
+}
+
+@mixin breakpoint-large-up {
+    @include breakpoint-up("large") {
+        @content;
+    }
+}
+
+@mixin breakpoint-large-only {
+    @include breakpoint-only("large") {
+        @content;
+    }
+}
+
+@mixin breakpoint-medium-down {
+    @include breakpoint-down("medium") {
+        @content;
+    }
+}
+
+@mixin breakpoint-medium-up {
+    @include breakpoint-up("medium") {
+        @content;
+    }
+}
+
+@mixin breakpoint-medium-only {
+    @include breakpoint-only("medium") {
+        @content;
+    }
+}
+
+@mixin breakpoint-small-down {
+    @include breakpoint-down("small") {
+        @content;
+    }
+}
+
+@mixin breakpoint-small-up {
+    @include breakpoint-up("small") {
+        @content;
+    }
+}
+
+@mixin breakpoint-small-only {
+    @include breakpoint-only("small") {
+        @content;
+    }
+}
+
+@mixin breakpoint-xsmall-down {
+    @include breakpoint-down("xsmall") {
+        @content;
+    }
+}
+
+@mixin breakpoint-xsmall-up {
+    @include breakpoint-up("xsmall") {
+        @content;
+    }
+}
+
+@mixin breakpoint-xsmall-only {
+    @include breakpoint-only("xsmall") {
+        @content;
+    }
+}
